@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+models/*.pt
+models/*.onnx
+data/
+runs/
+*.log
+/*.pt

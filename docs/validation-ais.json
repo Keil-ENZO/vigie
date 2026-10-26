@@ -1,0 +1,88 @@
+{
+  "model": "defendintel-yolov8s-s2.pt",
+  "conf": 0.2,
+  "rows": [
+    {
+      "zone": "Skagen, mouillage",
+      "scene": "S2B_32VNJ_20261018_0_L2A",
+      "scan_id": "20261021-195543-4e33",
+      "ais": 66,
+      "ais_50m": 29,
+      "detections": 23,
+      "matched": 23,
+      "dark": 0,
+      "precision": 1.0,
+      "recall_50m": 0.759,
+      "matched_50m": 22,
+      "len_mae": 30.0
+    },
+    {
+      "zone": "Aarhus, baie",
+      "scene": "S2B_32VNH_20261018_0_L2A",
+      "scan_id": "20261021-195632-d1dc",
+      "ais": 28,
+      "ais_50m": 9,
+      "detections": 2,
+      "matched": 1,
+      "dark": 1,
+      "precision": 0.5,
+      "recall_50m": 0.111,
+      "matched_50m": 1,
+      "len_mae": 43.0
+    },
+    {
+      "zone": "Fredericia, Petit Belt",
+      "scene": "S2B_32UNG_20261018_0_L2A",
+      "scan_id": "20261021-195640-35bf",
+      "ais": 15,
+      "ais_50m": 2,
+      "detections": 11,
+      "matched": 1,
+      "dark": 10,
+      "precision": 0.091,
+      "recall_50m": 0.0,
+      "matched_50m": 0,
+      "len_mae": 8.0
+    },
+    {
+      "zone": "Øresund, Copenhague",
+      "scene": "S2C_33UUB_20260927_0_L2A",
+      "scan_id": "20261021-195647-5f20",
+      "ais": 147,
+      "ais_50m": 6,
+      "detections": 50,
+      "matched": 20,
+      "dark": 30,
+      "precision": 0.4,
+      "recall_50m": 0.0,
+      "matched_50m": 0,
+      "len_mae": 18.5
+    },
+    {
+      "zone": "Grand Belt, pont",
+      "scene": "S2C_32UPG_20260930_0_L2A",
+      "scan_id": "20261021-195656-c5a4",
+      "ais": 6,
+      "ais_50m": 1,
+      "detections": 9,
+      "matched": 2,
+      "dark": 7,
+      "precision": 0.222,
+      "recall_50m": 1.0,
+      "matched_50m": 1,
+      "len_mae": 6.5
+    }
+  ],
+  "total": {
+    "ais": 262,
+    "ais_50m": 47,
+    "detections": 95,
+    "matched": 47,
+    "dark": 48,
+    "matched_50m": 24,
+    "precision": 0.495,
+    "recall_50m": 0.511,
+    "len_mae": 19.0,
+    "len_bias": 5.0
+  }
+}

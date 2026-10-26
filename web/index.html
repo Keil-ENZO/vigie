@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vigie · surveillance maritime</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='13' fill='none' stroke='%2338bdf8' stroke-width='3'/><circle cx='16' cy='16' r='4' fill='%2338bdf8'/></svg>">
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <svg viewBox="0 0 32 32" width="22" height="22"><circle cx="16" cy="16" r="13" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="16" cy="16" r="4" fill="currentColor"/></svg>
+      <span>Vigie</span>
+      <small>surveillance maritime locale</small>
+    </div>
+    <nav class="tabs" id="tabs">
+      <button data-tab="scan" class="active">Satellite</button>
+      <button data-tab="history">Historique</button>
+      <button data-tab="upload">Image libre</button>
+    </nav>
+    <div class="health" id="health">…</div>
+  </header>
+
+  <main class="layout">
+    <aside class="sidebar">
+      <section class="panel" data-panel="scan">
+        <h2>Zone</h2>
+        <div class="presets" id="presets"></div>
+        <div class="row">
+          <button id="draw-btn" class="ghost">Dessiner une zone</button>
+          <button id="view-btn" class="ghost">Vue actuelle</button>
+        </div>
+        <p class="hint" id="aoi-label">Choisis une zone ci-dessus ou dessine-la sur la carte.</p>
+
+        <h2>Capteur</h2>
+        <div class="seg" id="sensor">
+          <button data-sensor="s2" class="active">Optique · Sentinel-2</button>
+          <button data-sensor="s1">Radar · Sentinel-1</button>
+        </div>
+        <p class="hint" id="sensor-hint">Image en vraies couleurs, de jour et sans nuages.</p>
+
+        <h2 id="pass-title">Passe Sentinel-2</h2>
+        <div class="row tight">
+          <label>Fenêtre <select id="days"><option>15</option><option selected>45</option><option>90</option><option>180</option></select> j</label>
+          <label id="cloud-label">Nuages &lt; <select id="cloud"><option>5</option><option>10</option><option selected>20</option><option>40</option></select> %</label>
+        </div>
+        <div id="scenes" class="scenes"><p class="hint">Les passes apparaîtront ici.</p></div>
+
+        <h2>Détection</h2>
+        <label class="slider">Seuil de confiance <output id="conf-out">0.20</output>
+          <input id="conf" type="range" min="0.05" max="0.8" step="0.01" value="0.20"></label>
+        <label class="check"><input id="do-analyse" type="checkbox" checked> Analyse par le VLM et rapport</label>
+        <button id="scan-btn" class="primary" disabled>Lancer le scan</button>
+        <div id="job" class="job hidden">
+          <div class="bar"><span id="job-bar"></span></div>
+          <p id="job-msg"></p>
+        </div>
+      </section>
+
+      <section class="panel hidden" data-panel="history">
+        <h2>Scans enregistrés</h2>
+        <div id="history" class="history"></div>
+      </section>
+
+      <section class="panel hidden" data-panel="upload">
+        <h2>Image libre</h2>
+        <p class="hint">Le mode de la démo d'origine : une image satellite quelconque, sans géoréférence. Le détecteur la découpe en tuiles.</p>
+        <input id="upload-file" type="file" accept="image/*">
+        <label class="slider">Seuil <output id="up-conf-out">0.20</output>
+          <input id="up-conf" type="range" min="0.05" max="0.8" step="0.01" value="0.20"></label>
+        <button id="upload-btn" class="primary" disabled>Détecter</button>
+        <p class="hint" id="upload-msg"></p>
+      </section>
+    </aside>
+
+    <div class="mapwrap">
+      <div id="map"></div>
+      <div class="map-tools">
+        <button id="basemap-btn" class="chip">Fond : sombre</button>
+        <button id="overlay-btn" class="chip">Image Sentinel : visible</button>
+        <button id="live-ais-btn" class="chip">AIS en direct : off</button>
+      </div>
+      <div id="upload-view" class="upload-view hidden">
+        <button class="close" id="upload-close">×</button>
+        <canvas id="upload-canvas"></canvas>
+      </div>
+    </div>
+
+    <aside class="results">
+      <div id="empty" class="empty">
+        <h3>Aucun scan affiché</h3>
+        <p>Vigie va chercher la dernière image Sentinel-2 de la zone, détecte les navires, mesure leur longueur et leur cap, puis un modèle de vision local les décrit et rédige un rapport.</p>
+        <p class="hint">Tout tourne en local.</p>
+      </div>
+      <div id="result" class="hidden">
+        <div class="scan-head">
+          <h2 id="r-title"></h2>
+          <p id="r-sub" class="hint"></p>
+        </div>
+        <div class="stats" id="stats"></div>
+        <div class="seg">
+          <button data-view="vessels" class="active">Navires</button>
+          <button data-view="report">Rapport</button>
+          <button data-view="activity">Activité</button>
+        </div>
+        <div id="r-actions" class="row"></div>
+        <div id="vessels" class="vessels"></div>
+        <div id="report" class="report hidden"></div>
+        <div id="activity" class="activity hidden"></div>
+      </div>
+    </aside>
+  </main>
+
+  <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>
