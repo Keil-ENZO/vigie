@@ -42,6 +42,17 @@ What the numbers say:
 
 Full tables: [docs/validation-ais.md](docs/validation-ais.md), [docs/validation-sar.md](docs/validation-sar.md). Reproduce with `uv run python scripts/validate_ais.py`.
 
+## Requirements
+
+- Linux, tested on Ubuntu. macOS and WSL are untested.
+- Python 3.11 or 3.12 and [uv](https://docs.astral.sh/uv/).
+- About 7 GB of disk: PyTorch alone is 6 GB on the first `uv sync`.
+- An NVIDIA GPU is recommended. Without one, everything runs on the CPU, slower.
+- Internet access: imagery, AIS and OpenStreetMap are fetched on demand.
+- Optional, for reports: a vision model, see [Configuration](#configuration).
+
+The interface and the reports are in French.
+
 ## Quick start
 
 ```bash
@@ -57,6 +68,19 @@ If Vigie runs on another machine, tunnel the port:
 ```bash
 ssh -L 8740:localhost:8740 <server>
 ```
+
+Then open the web UI, pick a scan, and press « Croiser avec l'AIS » to match ships against AIS.
+
+### Your own area
+
+Pass a box as `west,south,east,north` in degrees, at most 0.5° a side:
+
+```bash
+uv run vigie scenes 5.86,43.06,5.98,43.13      # passes available over the box
+uv run vigie scan 5.86,43.06,5.98,43.13        # latest clear pass
+```
+
+Presets: `toulon`, `marseille`, `fos`, `brest`, `lehavre`, `skagen`, `rotterdam`, `gibraltar`, `suez`, `singapore`.
 
 Other commands: `vigie scenes <bbox>`, `vigie list`, `vigie analyse <scan_id>`. Radar: `vigie scan-sar --preset skagen`, details in [docs/sar.md](docs/sar.md).
 
@@ -80,6 +104,13 @@ src/vigie/
 web/            map UI, no build step
 scripts/        AIS evaluation
 ```
+
+## Limits
+
+- **AIS matching only covers Danish waters.** It uses the Danish Maritime Authority's free daily files, downloaded on demand. Elsewhere, ships are detected but not named.
+- **Live AIS** needs a free [aisstream.io](https://aisstream.io) key, see below.
+- **No authentication.** The server listens on `127.0.0.1` by default. Do not expose it to the internet as is.
+- Optical needs a clear sky. Use `scan-sar` under clouds or at night.
 
 ## Configuration
 
