@@ -1,0 +1,65 @@
+{
+  "id": "20261021-194544-db72",
+  "name": "Skagen, mouillage",
+  "created": "2026-10-21T19:45:44+00:00",
+  "bbox": [
+    10.5,
+    57.55,
+    10.8,
+    57.72
+  ],
+  "scene": {
+    "id": "S2B_32VNJ_20261018_0_L2A",
+    "datetime": "2026-10-18T10:45:00.583000Z",
+    "cloud_cover": 3.353718,
+    "platform": "sentinel-2b",
+    "visual_href": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/32/V/NJ/2026/10/S2B_32VNJ_20261018_0_L2A/TCI.tif",
+    "scl_href": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/32/V/NJ/2026/10/S2B_32VNJ_20261018_0_L2A/SCL.tif",
+    "epsg": 32632,
+    "thumbnail": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/32/V/NJ/2026/10/S2B_32VNJ_20261018_0_L2A/preview.jpg",
+    "coverage": null
+  },
+  "params": {
+    "confidence": 0.2,
+    "iou": 0.45,
+    "tile": 640,
+    "overlap": 96,
+    "batch": 16,
+    "max_det": 500
+  },
+  "model": "defendintel-yolov8s-s2.pt",
+  "size_px": [
+    1837,
+    1936
+  ],
+  "gsd_m": 10.0,
+  "crs": "EPSG:32632",
+  "corners": [
+    [
+      10.500157023957831,
+      57.7239824041038
+    ],
+    [
+      10.808422562616732,
+      57.71995495098808
+    ],
+    [
+      10.799801150194886,
+      57.546138485250644
+    ],
+    [
+      10.493003755002725,
+      57.55013915258397
+    ]
+  ],
+  "water_mask": true,
+  "counts": {
+    "detections": 23,
+    "vessels": 23
+  },
+  "timing_s": {
+    "read": 3.38,
+    "detect": 1.46,
+    "total": 6.01
+  }
+}

@@ -53,10 +53,19 @@ Full tables: [docs/validation-ais.md](docs/validation-ais.md), [docs/validation-
 
 The interface and the reports are in French.
 
-## Quick start
+## Try it without a GPU
+
+A real Skagen scan ships with the repo: ships, AIS matches and report are already computed.
 
 ```bash
 git clone https://github.com/Keil-ENZO/vigie.git && cd vigie
+uv sync
+uv run vigie demo                              # then open the printed address
+```
+
+## Quick start
+
+```bash
 uv sync
 uv run vigie fetch-model                       # reference Sentinel-2 weights, 22 MB
 uv run vigie scan --preset toulon --analyse    # --analyse needs a vision model, see Configuration
@@ -84,6 +93,16 @@ Presets: `toulon`, `marseille`, `fos`, `brest`, `lehavre`, `skagen`, `rotterdam`
 
 Other commands: `vigie scenes <bbox>`, `vigie list`, `vigie analyse <scan_id>`. Radar: `vigie scan-sar --preset skagen`, details in [docs/sar.md](docs/sar.md).
 
+### Watch an area
+
+`vigie watch` checks an area once: if a new clear pass exists, it scans it and sends a [ntfy](https://ntfy.sh) notification. Run it from cron:
+
+```bash
+0 * * * * cd /path/to/vigie && uv run vigie watch --preset skagen --ntfy https://ntfy.sh/<your-topic>
+```
+
+In Danish waters, it notifies only when ships have no AIS match. The Danish AIS file comes out late, so the pass waits until it is published. Elsewhere, it sends the ship count, since silent ships cannot be told apart. Topics on ntfy.sh are public: pick one that is hard to guess.
+
 ## Layout
 
 ```
@@ -100,8 +119,10 @@ src/vigie/
   analyst.py    vision model per ship, then a report
   series.py     one area over several passes
   scan.py       orchestration and on-disk storage
+  watch.py      one check of an area, ntfy notification
   api.py, cli.py, jobs.py, thermal.py
 web/            map UI, no build step
+examples/       the Skagen scan behind `vigie demo`
 scripts/        validation against AIS, demo recording, detector training in train/
 ```
 
@@ -109,7 +130,8 @@ scripts/        validation against AIS, demo recording, detector training in tra
 
 - **AIS matching only covers Danish waters.** It uses the Danish Maritime Authority's free daily files, downloaded on demand. Elsewhere, ships are detected but not named.
 - **Live AIS** needs a free [aisstream.io](https://aisstream.io) key, see below.
-- **No authentication.** The server listens on `127.0.0.1` by default. Do not expose it to the internet as is.
+- **No authentication.** The server listens on `127.0.0.1` by default and only answers to `localhost`, `127.0.0.1` and the address given to `--host`. To reach it by another name on a private network, set `VIGIE_ALLOWED_HOSTS`. Do not expose it to the internet as is. See [SECURITY.md](SECURITY.md).
+- **One detector by default.** The reference weights stay the default: they see large anchored ships better. Our own `vigie-s2-v1` beats them on small boats, see [docs/entrainement.md](docs/entrainement.md), but its weights are not published.
 - Optical needs a clear sky. Use `scan-sar` under clouds or at night.
 
 ## Configuration
@@ -155,7 +177,9 @@ With a hosted API, ship crops and scan data leave your machine.
 | `VIGIE_DATA` | `./data` | scans and caches |
 | `VIGIE_AIS_DIR` | `$VIGIE_DATA/ais` | Danish AIS daily CSVs, for matching |
 | `VIGIE_AISSTREAM_KEY` | none | free [aisstream.io](https://aisstream.io) key for live AIS, or put it in `~/.config/vigie/aisstream.key` |
-| `VIGIE_MODEL` | reference weights | detector weights |
+| `VIGIE_MODEL` | reference weights | detector weights. A `.pt` file can run code when loaded: only use weights you trust |
+| `VIGIE_ALLOWED_HOSTS` | none | extra host names the server answers to, comma separated, `*` for any |
+| `VIGIE_NTFY` | none | ntfy address for `vigie watch` |
 | `VIGIE_OVERPASS` | `overpass-api.de` | OpenStreetMap Overpass endpoint |
 
 Never commit a key. Keep it in the environment or in the key file.
@@ -173,4 +197,6 @@ The 3090's GDDR6X heats fast. Every GPU loop calls a guard that pauses at 84 °C
 
 ## Licence
 
-Vigie's own code is MIT. It depends on [Ultralytics](https://github.com/ultralytics/ultralytics), which is AGPL-3.0. If you redistribute Vigie with Ultralytics, or offer it as a network service, AGPL terms apply to that whole.
+Copyright © 2026 Enzo Keil. Vigie is licensed under the [GNU AGPL-3.0](LICENSE), like [Ultralytics](https://github.com/ultralytics/ultralytics), which it depends on. If you offer a modified Vigie as a network service, you must share its source with its users.
+
+Commits up to `7201f77` were published under MIT.

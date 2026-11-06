@@ -4,9 +4,11 @@ from __future__ import annotations
 
 import io
 import math
+import os
 import shutil
 from pathlib import Path
 from typing import Annotated
+from urllib.parse import urlsplit
 
 import numpy as np
 from fastapi import FastAPI, File, Form, HTTPException, UploadFile
@@ -21,8 +23,22 @@ from .presets import PRESETS
 WEB = Path(__file__).resolve().parents[2] / "web"
 MAX_SIDE_DEG = 0.5
 MAX_UPLOAD_PX = 8000
+HOSTS = {"localhost", "127.0.0.1", os.environ.get("VIGIE_BIND", "127.0.0.1"),
+         *filter(None, os.environ.get("VIGIE_ALLOWED_HOSTS", "").split(","))}
 
 app = FastAPI(title="Vigie", version="0.1.0")
+
+
+@app.middleware("http")
+async def same_site_only(request, call_next):
+    """Pas d'authentification : une page tierce ne doit ni lire l'API par rebinding DNS, ni y écrire."""
+    host = request.headers.get("host", "")
+    if "*" not in HOSTS and host.rsplit(":", 1)[0] not in HOSTS:
+        return PlainTextResponse("hôte refusé, voir VIGIE_ALLOWED_HOSTS", status_code=403)
+    origin = request.headers.get("origin")
+    if request.method not in ("GET", "HEAD") and origin and urlsplit(origin).netloc != host:
+        return PlainTextResponse("origine refusée", status_code=403)
+    return await call_next(request)
 
 
 @app.middleware("http")
@@ -41,7 +57,7 @@ app.include_router(sar_router)
 class ScanRequest(BaseModel):
     bbox: tuple[float, float, float, float]
     name: str | None = Field(default=None, max_length=80)
-    scene_id: str | None = None
+    scene_id: str | None = Field(default=None, pattern=r"^[\w.-]+$")
     days: int = Field(default=30, ge=1, le=365)
     max_cloud: float = Field(default=20, ge=0, le=100)
     confidence: float = Field(default=0.20, ge=0.01, le=0.95)
@@ -254,10 +270,13 @@ def scan_geojson(scan_id: str):
 async def detect_upload(image: Annotated[UploadFile, File()], confidence: float = Form(0.20), tile: int = Form(640)):
     """Le mode de la démo d'origine : une image quelconque, sans géoréférence."""
     try:
-        img = Image.open(io.BytesIO(await image.read())).convert("RGB")
+        img = Image.open(io.BytesIO(await image.read()))  # lit l'en-tête, pas encore les pixels
+        too_big = max(img.size) > MAX_UPLOAD_PX
+        if not too_big:
+            img = img.convert("RGB")
     except Exception:  # noqa: BLE001
         raise HTTPException(400, "image illisible") from None
-    if max(img.size) > MAX_UPLOAD_PX:
+    if too_big:
         raise HTTPException(413, f"image trop grande, {MAX_UPLOAD_PX} px de côté au plus")
     params = detector.DetectParams(confidence=min(max(confidence, 0.01), 0.95), tile=max(320, min(int(tile), 1024)))
     params.overlap = min(params.overlap, params.tile // 4)

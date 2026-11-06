@@ -24,7 +24,7 @@ class SarScanRequest(BaseModel):
 
     bbox: tuple[float, float, float, float]
     name: str | None = Field(default=None, max_length=80)
-    scene_id: str | None = None
+    scene_id: str | None = Field(default=None, pattern=r"^[\w.-]+$")
     days: int = Field(default=12, ge=1, le=365)
     max_cloud: float = Field(default=20, ge=0, le=100)
     confidence: float = Field(default=0.20, ge=0.01, le=0.95)

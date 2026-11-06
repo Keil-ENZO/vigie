@@ -267,8 +267,8 @@ function liveAisPopup(f) {
   popup?.remove();
   popup = new maplibregl.Popup({ offset: 10, maxWidth: "300px" }).setLngLat(f.geometry.coordinates).setHTML(`
     <div><b style="color:var(--accent)">${esc(p.name)}</b>${cat && p.cat !== "unknown" ? ` · ${cat.label}` : ""}
-    <p style="margin:4px 0 0;font-size:12px">MMSI ${esc(p.mmsi)}${p.length_m && p.length_m !== "null" ? ` · ${p.length_m} m` : ""}</p>
-    <p style="margin:2px 0 0;font-size:12px">${p.sog_kn ?? "?"} nd · route ${p.cog_deg != null ? Math.round(p.cog_deg) + "°" : "?"}${NAV[p.nav_status] ? ` · ${NAV[p.nav_status]}` : ""}</p>
+    <p style="margin:4px 0 0;font-size:12px">MMSI ${esc(p.mmsi)}${p.length_m && p.length_m !== "null" ? ` · ${esc(p.length_m)} m` : ""}</p>
+    <p style="margin:2px 0 0;font-size:12px">${esc(p.sog_kn ?? "?")} nd · route ${p.cog_deg != null ? Math.round(p.cog_deg) + "°" : "?"}${NAV[p.nav_status] ? ` · ${NAV[p.nav_status]}` : ""}</p>
     ${p.destination && p.destination !== "null" ? `<p style="margin:2px 0 0;font-size:12px">vers ${esc(p.destination)}</p>` : ""}
     <p style="margin:2px 0 0;font-size:11px;color:var(--muted)">AIS en direct, ${ago}</p></div>`).addTo(map);
 }
@@ -491,7 +491,7 @@ function select(id, fly) {
     <div><b>${p.id}</b>${cat ? ` · ${CATEGORY[cat].label}` : ""}
       <p>${fmtNum(p.length_m)} m × ${fmtNum(p.width_m)} m${p.course_deg != null ? `, cap ${fmtNum(p.course_deg)}°` : p.heading_deg != null ? `, axe ${fmtNum(p.heading_deg)}°` : ""}</p>
       ${p.wake_m ? `<p>sillage ${fmtNum(p.wake_m)} m : en route</p>` : ""}
-      ${p.ais?.status === "matched" ? `<p>AIS : <b>${esc(p.ais.name || p.ais.mmsi)}</b>, ${esc(p.ais.ship_type || "?")}, ${p.ais.length_m ?? "?"} m, ${p.ais.sog_kn ?? "?"} nd, à ${p.ais.distance_m} m</p>` : ""}
+      ${p.ais?.status === "matched" ? `<p>AIS : <b>${esc(p.ais.name || p.ais.mmsi)}</b>, ${esc(p.ais.ship_type || "?")}, ${esc(p.ais.length_m ?? "?")} m, ${esc(p.ais.sog_kn ?? "?")} nd, à ${esc(p.ais.distance_m)} m</p>` : ""}
       ${p.ais?.status === "dark" ? `<p style="color:#f97316">Sans AIS : navire sombre ?</p>` : ""}
       <p>${p.lat.toFixed(5)}, ${p.lon.toFixed(5)}</p>
       <p>détecteur ${(p.confidence * 100).toFixed(0)} %${p.water_fraction != null ? ` · eau ${(p.water_fraction * 100).toFixed(0)} %` : ""}</p>

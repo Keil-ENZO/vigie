@@ -3,7 +3,7 @@ name = "vigie"
 version = "0.1.0"
 description = "Surveillance maritime locale : navires sur Sentinel-1/2, croisement AIS, rapport par VLM local."
 requires-python = ">=3.11,<3.13"
-license = "MIT"
+license = "AGPL-3.0-only"
 dependencies = [
   "ultralytics>=8.3.0",
   "torch>=2.4",

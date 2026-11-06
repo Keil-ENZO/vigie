@@ -1,0 +1,627 @@
+{
+  "model": "gemma4:26b-a4b-it-q4_K_M",
+  "seconds": 23.3,
+  "facts": {
+    "zone": "Skagen, mouillage",
+    "passe": "S2B_32VNJ_20261018_0_L2A",
+    "date_utc": "2026-10-18T10:45:00.583000Z",
+    "nuages_pct": 3.353718,
+    "detections": 23,
+    "navires_retenus": 23,
+    "rejetes_par_vlm": 0,
+    "en_route": 7,
+    "par_type": {
+      "unknown": 17,
+      "tanker": 4,
+      "fishing": 2
+    },
+    "ais": {
+      "apparies": [
+        {
+          "id": "V001",
+          "nom": "ODIN",
+          "type_ais": "Tug",
+          "longueur_declaree_m": 28.0,
+          "statut": "matched"
+        },
+        {
+          "id": "V002",
+          "nom": "NORTHERN PURPOSE",
+          "type_ais": "Tanker",
+          "longueur_declaree_m": 130.0,
+          "statut": "matched"
+        },
+        {
+          "id": "V003",
+          "nom": "TUNADAL",
+          "type_ais": "Cargo",
+          "longueur_declaree_m": 158.0,
+          "statut": "matched"
+        },
+        {
+          "id": "V004",
+          "nom": "RIX MELODY",
+          "type_ais": "Cargo",
+          "longueur_declaree_m": 89.0,
+          "statut": "matched"
+        },
+        {
+          "id": "V005",
+          "nom": "GAIA NORDIC",
+          "type_ais": "Tanker",
+          "longueur_declaree_m": 50.0,
+          "statut": "matched"
+        },
+        {
+          "id": "V006",
+          "nom": "DAN SABIA",
+          "type_ais": "Tanker",
+          "longueur_declaree_m": 206.0,
+          "statut": "matched"
+        },
+        {
+          "id": "V007",
+          "nom": "GIJON KNUTSEN",
+          "type_ais": "Tanker",
+          "longueur_declaree_m": 187.0,
+          "statut": "matched"
+        },
+        {
+          "id": "V008",
+          "nom": "MICHELIA",
+          "type_ais": "Cargo",
+          "longueur_declaree_m": 190.0,
+          "statut": "matched"
+        },
+        {
+          "id": "V009",
+          "nom": "ITHAKI DF",
+          "type_ais": "Tanker",
+          "longueur_declaree_m": 250.0,
+          "statut": "matched"
+        },
+        {
+          "id": "V010",
+          "nom": "ECO CORSAIR",
+          "type_ais": "Tanker",
+          "longueur_declaree_m": 95.0,
+          "statut": "matched"
+        },
+        {
+          "id": "V011",
+          "nom": "BULGARIA",
+          "type_ais": "Cargo",
+          "longueur_declaree_m": 190.0,
+          "statut": "matched"
+        },
+        {
+          "id": "V012",
+          "nom": "ESRA C",
+          "type_ais": "Cargo",
+          "longueur_declaree_m": 175.0,
+          "statut": "matched"
+        },
+        {
+          "id": "V013",
+          "nom": "COLD STREAM",
+          "type_ais": "Cargo",
+          "longueur_declaree_m": 139.0,
+          "statut": "matched"
+        },
+        {
+          "id": "V014",
+          "nom": "BOLDWIND",
+          "type_ais": "Cargo",
+          "longueur_declaree_m": 149.0,
+          "statut": "matched"
+        },
+        {
+          "id": "V015",
+          "nom": "TORILL KNUTSEN",
+          "type_ais": null,
+          "longueur_declaree_m": 275.0,
+          "statut": "matched"
+        },
+        {
+          "id": "V016",
+          "nom": "CORAL LOPHELIA",
+          "type_ais": "Tanker",
+          "longueur_declaree_m": 108.0,
+          "statut": "matched"
+        },
+        {
+          "id": "V017",
+          "nom": "JORVIK",
+          "type_ais": "Cargo",
+          "longueur_declaree_m": 90.0,
+          "statut": "matched"
+        },
+        {
+          "id": "V018",
+          "nom": "GOTTLIEB",
+          "type_ais": "Cargo",
+          "longueur_declaree_m": 127.0,
+          "statut": "matched"
+        },
+        {
+          "id": "V019",
+          "nom": "LIONFISH",
+          "type_ais": "Cargo",
+          "longueur_declaree_m": 139.0,
+          "statut": "matched"
+        },
+        {
+          "id": "V020",
+          "nom": "SIRI KNUTSEN",
+          "type_ais": "Tanker",
+          "longueur_declaree_m": 189.0,
+          "statut": "matched"
+        },
+        {
+          "id": "V021",
+          "nom": "NORTHERN PHOENIX",
+          "type_ais": "Tanker",
+          "longueur_declaree_m": 130.0,
+          "statut": "matched"
+        },
+        {
+          "id": "V022",
+          "nom": "ALFA FINLANDIA",
+          "type_ais": "Tanker",
+          "longueur_declaree_m": 237.0,
+          "statut": "matched"
+        },
+        {
+          "id": "V023",
+          "nom": "EVDILOS",
+          "type_ais": "Cargo",
+          "longueur_declaree_m": 180.0,
+          "statut": "matched"
+        }
+      ],
+      "sombres": []
+    },
+    "navires": [
+      {
+        "id": "V015",
+        "length_m": 231.0,
+        "heading_deg": 146.0,
+        "confidence": 0.452,
+        "lat": 57.679815,
+        "lon": 10.704062,
+        "type": "tanker",
+        "en_route": false,
+        "cap_deg": null,
+        "sillage_m": null
+      },
+      {
+        "id": "V023",
+        "length_m": 217.0,
+        "heading_deg": 136.0,
+        "confidence": 0.3,
+        "lat": 57.682651,
+        "lon": 10.661698,
+        "type": "unknown",
+        "en_route": false,
+        "cap_deg": null,
+        "sillage_m": null
+      },
+      {
+        "id": "V022",
+        "length_m": 207.0,
+        "heading_deg": 117.0,
+        "confidence": 0.316,
+        "lat": 57.655516,
+        "lon": 10.633657,
+        "type": "unknown",
+        "en_route": false,
+        "cap_deg": null,
+        "sillage_m": null
+      },
+      {
+        "id": "V008",
+        "length_m": 185.0,
+        "heading_deg": 91.0,
+        "confidence": 0.551,
+        "lat": 57.637861,
+        "lon": 10.659612,
+        "type": "tanker",
+        "en_route": false,
+        "cap_deg": null,
+        "sillage_m": null
+      },
+      {
+        "id": "V005",
+        "length_m": 176.0,
+        "heading_deg": 167.0,
+        "confidence": 0.567,
+        "lat": 57.681748,
+        "lon": 10.645939,
+        "type": "tanker",
+        "en_route": false,
+        "cap_deg": null,
+        "sillage_m": null
+      },
+      {
+        "id": "V006",
+        "length_m": 174.0,
+        "heading_deg": 84.0,
+        "confidence": 0.555,
+        "lat": 57.671733,
+        "lon": 10.661184,
+        "type": "unknown",
+        "en_route": false,
+        "cap_deg": null,
+        "sillage_m": null
+      },
+      {
+        "id": "V020",
+        "length_m": 172.0,
+        "heading_deg": 138.0,
+        "confidence": 0.337,
+        "lat": 57.665683,
+        "lon": 10.717623,
+        "type": "tanker",
+        "en_route": false,
+        "cap_deg": null,
+        "sillage_m": null
+      },
+      {
+        "id": "V003",
+        "length_m": 164.0,
+        "heading_deg": 152.0,
+        "confidence": 0.587,
+        "lat": 57.697216,
+        "lon": 10.699119,
+        "type": "unknown",
+        "en_route": false,
+        "cap_deg": null,
+        "sillage_m": null
+      },
+      {
+        "id": "V014",
+        "length_m": 136.0,
+        "heading_deg": 72.0,
+        "confidence": 0.458,
+        "lat": 57.598719,
+        "lon": 10.538374,
+        "type": "unknown",
+        "en_route": false,
+        "cap_deg": null,
+        "sillage_m": null
+      },
+      {
+        "id": "V002",
+        "length_m": 134.0,
+        "heading_deg": 68.0,
+        "confidence": 0.599,
+        "lat": 57.697159,
+        "lon": 10.62304,
+        "type": "unknown",
+        "en_route": false,
+        "cap_deg": null,
+        "sillage_m": null
+      },
+      {
+        "id": "V013",
+        "length_m": 134.0,
+        "heading_deg": 73.0,
+        "confidence": 0.461,
+        "lat": 57.661728,
+        "lon": 10.606331,
+        "type": "unknown",
+        "en_route": false,
+        "cap_deg": null,
+        "sillage_m": null
+      },
+      {
+        "id": "V021",
+        "length_m": 134.0,
+        "heading_deg": 72.0,
+        "confidence": 0.321,
+        "lat": 57.698624,
+        "lon": 10.656304,
+        "type": "unknown",
+        "en_route": false,
+        "cap_deg": null,
+        "sillage_m": null
+      },
+      {
+        "id": "V011",
+        "length_m": 117.0,
+        "heading_deg": 61.0,
+        "confidence": 0.484,
+        "lat": 57.601939,
+        "lon": 10.563343,
+        "type": "unknown",
+        "en_route": true,
+        "cap_deg": 228.0,
+        "sillage_m": 94.0
+      },
+      {
+        "id": "V007",
+        "length_m": 106.0,
+        "heading_deg": 93.0,
+        "confidence": 0.553,
+        "lat": 57.688644,
+        "lon": 10.642382,
+        "type": "unknown",
+        "en_route": true,
+        "cap_deg": 274.0,
+        "sillage_m": 102.0
+      },
+      {
+        "id": "V018",
+        "length_m": 104.0,
+        "heading_deg": 62.0,
+        "confidence": 0.363,
+        "lat": 57.640286,
+        "lon": 10.591503,
+        "type": "unknown",
+        "en_route": false,
+        "cap_deg": null,
+        "sillage_m": null
+      },
+      {
+        "id": "V019",
+        "length_m": 94.0,
+        "heading_deg": 145.0,
+        "confidence": 0.342,
+        "lat": 57.659731,
+        "lon": 10.674083,
+        "type": "unknown",
+        "en_route": false,
+        "cap_deg": null,
+        "sillage_m": null
+      },
+      {
+        "id": "V017",
+        "length_m": 90.0,
+        "heading_deg": 4.0,
+        "confidence": 0.373,
+        "lat": 57.580452,
+        "lon": 10.744279,
+        "type": "unknown",
+        "en_route": true,
+        "cap_deg": 183.0,
+        "sillage_m": 85.0
+      },
+      {
+        "id": "V004",
+        "length_m": 86.0,
+        "heading_deg": 84.0,
+        "confidence": 0.573,
+        "lat": 57.699094,
+        "lon": 10.591295,
+        "type": "unknown",
+        "en_route": false,
+        "cap_deg": null,
+        "sillage_m": null
+      },
+      {
+        "id": "V010",
+        "length_m": 86.0,
+        "heading_deg": 68.0,
+        "confidence": 0.506,
+        "lat": 57.683842,
+        "lon": 10.615201,
+        "type": "unknown",
+        "en_route": false,
+        "cap_deg": null,
+        "sillage_m": null
+      },
+      {
+        "id": "V009",
+        "length_m": 79.0,
+        "heading_deg": 150.0,
+        "confidence": 0.535,
+        "lat": 57.61908,
+        "lon": 10.646856,
+        "type": "unknown",
+        "en_route": true,
+        "cap_deg": 322.0,
+        "sillage_m": 205.0
+      },
+      {
+        "id": "V001",
+        "length_m": 64.0,
+        "heading_deg": 140.0,
+        "confidence": 0.609,
+        "lat": 57.701402,
+        "lon": 10.624566,
+        "type": "unknown",
+        "en_route": true,
+        "cap_deg": 322.0,
+        "sillage_m": 88.0
+      },
+      {
+        "id": "V012",
+        "length_m": 40.0,
+        "heading_deg": 80.0,
+        "confidence": 0.483,
+        "lat": 57.669635,
+        "lon": 10.640196,
+        "type": "fishing",
+        "en_route": true,
+        "cap_deg": 258.0,
+        "sillage_m": 151.0
+      },
+      {
+        "id": "V016",
+        "length_m": 38.0,
+        "heading_deg": 86.0,
+        "confidence": 0.435,
+        "lat": 57.678283,
+        "lon": 10.588735,
+        "type": "fishing",
+        "en_route": true,
+        "cap_deg": 269.0,
+        "sillage_m": 88.0
+      }
+    ]
+  },
+  "vessels": {
+    "V001": {
+      "is_vessel": true,
+      "category": "unknown",
+      "moving": true,
+      "confidence": 0.4,
+      "note": "Un petit navire en mouvement avec une trace de sillage est visible."
+    },
+    "V002": {
+      "is_vessel": true,
+      "category": "unknown",
+      "moving": false,
+      "confidence": 0.4,
+      "note": "Un objet allongé et clair est visible sur fond sombre."
+    },
+    "V003": {
+      "is_vessel": true,
+      "category": "unknown",
+      "moving": false,
+      "confidence": 0.3,
+      "note": "Un objet allongé et lumineux est visible au centre de l'image."
+    },
+    "V004": {
+      "is_vessel": true,
+      "category": "unknown",
+      "moving": false,
+      "confidence": 0.3,
+      "note": "Un petit objet rouge est visible au centre de l'image."
+    },
+    "V005": {
+      "is_vessel": true,
+      "category": "tanker",
+      "moving": false,
+      "confidence": 0.5,
+      "note": "Un navire de couleur sombre avec une superstructure blanche est visible."
+    },
+    "V006": {
+      "is_vessel": true,
+      "category": "unknown",
+      "moving": false,
+      "confidence": 0.3,
+      "note": "Un objet allongé et lumineux est visible sur fond sombre."
+    },
+    "V007": {
+      "is_vessel": true,
+      "category": "unknown",
+      "moving": true,
+      "confidence": 0.4,
+      "note": "Un petit navire avec un sillage est visible."
+    },
+    "V008": {
+      "is_vessel": true,
+      "category": "tanker",
+      "moving": false,
+      "confidence": 0.4,
+      "note": "On voit une forme allongée et sombre, probablement un pétrolier, à l'ancre."
+    },
+    "V009": {
+      "is_vessel": true,
+      "category": "unknown",
+      "moving": true,
+      "confidence": 0.3,
+      "note": "Un navire de taille moyenne est en mouvement avec un sillage visible."
+    },
+    "V010": {
+      "is_vessel": true,
+      "category": "unknown",
+      "moving": false,
+      "confidence": 0.3,
+      "note": "Une petite forme rouge est visible au centre de l'image."
+    },
+    "V011": {
+      "is_vessel": true,
+      "category": "unknown",
+      "moving": true,
+      "confidence": 0.4,
+      "note": "Un navire en mouvement avec un sillage visible."
+    },
+    "V012": {
+      "is_vessel": true,
+      "category": "fishing",
+      "moving": true,
+      "confidence": 0.7,
+      "note": "Un petit navire avec un sillage est visible."
+    },
+    "V013": {
+      "is_vessel": true,
+      "category": "unknown",
+      "moving": false,
+      "confidence": 0.3,
+      "note": "Un objet allongé et clair est visible sur fond sombre."
+    },
+    "V014": {
+      "is_vessel": true,
+      "category": "unknown",
+      "moving": false,
+      "confidence": 0.3,
+      "note": "Un objet blanc allongé est visible sur fond sombre."
+    },
+    "V015": {
+      "is_vessel": true,
+      "category": "tanker",
+      "moving": false,
+      "confidence": 0.5,
+      "note": "Un navire de grande taille avec une coque rouge est visible."
+    },
+    "V016": {
+      "is_vessel": true,
+      "category": "fishing",
+      "moving": true,
+      "confidence": 0.5,
+      "note": "Un petit navire avec un sillage est visible."
+    },
+    "V017": {
+      "is_vessel": true,
+      "category": "unknown",
+      "moving": true,
+      "confidence": 0.373,
+      "note": "Un petit navire avec un sillage est visible."
+    },
+    "V018": {
+      "is_vessel": true,
+      "category": "unknown",
+      "moving": false,
+      "confidence": 0.3,
+      "note": "On voit une petite forme allongée et orangée dans l'obscurité."
+    },
+    "V019": {
+      "is_vessel": true,
+      "category": "unknown",
+      "moving": false,
+      "confidence": 0.342,
+      "note": "Un petit objet lumineux est visible au centre de l'image."
+    },
+    "V020": {
+      "is_vessel": true,
+      "category": "tanker",
+      "moving": false,
+      "confidence": 0.4,
+      "note": "Un navire avec une coque sombre et une superstructure blanche est visible."
+    },
+    "V021": {
+      "is_vessel": true,
+      "category": "unknown",
+      "moving": false,
+      "confidence": 0.321,
+      "note": "Un petit objet lumineux est visible au centre de l'image."
+    },
+    "V022": {
+      "is_vessel": true,
+      "category": "unknown",
+      "moving": false,
+      "confidence": 0.3,
+      "note": "Un objet allongé et lumineux est visible sur fond sombre."
+    },
+    "V023": {
+      "is_vessel": true,
+      "category": "unknown",
+      "moving": false,
+      "confidence": 0.3,
+      "note": "Un objet allongé et sombre est visible sur fond noir."
+    }
+  },
+  "report_md": "# Rapport de situation maritime : Skagen\n\n**Synthèse**\nLa surveillance satellite du 18 octobre 2026 dans la zone de mouillage de Skagen révèle une présence importante de 23 navires. L'activité est marquée par une forte proportion de navires à l'arrêt, avec une majorité de types non identifiés.\n\n**Activité**\n* **Navires en route :**\n    * V011 (cap : 228°)\n    * V007 (cap : 274°)\n    * V017 (cap : 183°)\n    * V009 (cap : 322°)\n    * V001 (cap : 322°)\n    * V012 (cap : 258°)\n    * V016 (cap : 269°)\n* **Au mouillage :** 16 navires détectés.\n* **Répartition par type :**\n    * Unknown : 17\n    * Tanker : 4\n    * Fishing : 2\n\n**Points d'attention**\n* **Plus grands navires :** TORILL KNUTSEN (231 m), EVDILOS (217 m), ALFA FINLANDIA (207 m).\n* **Détections douteuses :** Plusieurs navires présentent un faible indice de confiance (ex: V023 à 0.3).\n\n**Croisement AIS**\n* **Navires identifiés :** ODIN, NORTHERN PURPOSE, TUNADAL, RIX MELODY, GAIA NORDIC, DAN SABIA, GIJON KNUTSEN, MICHELIA, ITHAKI DF, ECO CORSAIR, BULGARIA, ESRA C, COLD STREAM, BOLDWIND, TORILL KNUTSEN, CORAL LOPHELIA, JORVIK, GOTTLIEB, LIONFISH, SIRI KNUTSEN, NORTHERN PHOENIX, ALFA FINLANDIA, EVDILOS.\n* **Navires sombres :** Aucun.\n\n**Limites**\n* Résolution d'imagerie de 10 m.\n* Analyse basée sur une seule passe satellite.\n* Catégories de navires incertaines pour la majorité des détections (type \"unknown\")."
+}
