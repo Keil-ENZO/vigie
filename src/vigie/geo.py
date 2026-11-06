@@ -16,7 +16,7 @@ def water_fraction(water: np.ndarray, box: Box, margin: int = 6) -> float:
     on regarde donc un anneau élargi."""
     h, w = water.shape
     x1, y1 = max(0, int(box.x1) - margin), max(0, int(box.y1) - margin)
-    x2, y2 = min(w, int(math.ceil(box.x2)) + margin), min(h, int(math.ceil(box.y2)) + margin)
+    x2, y2 = min(w, math.ceil(box.x2) + margin), min(h, math.ceil(box.y2) + margin)
     patch = water[y1:y2, x1:x2]
     return float(patch.mean()) if patch.size else 0.0
 

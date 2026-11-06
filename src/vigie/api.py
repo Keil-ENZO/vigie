@@ -6,6 +6,7 @@ import io
 import math
 import shutil
 from pathlib import Path
+from typing import Annotated
 
 import numpy as np
 from fastapi import FastAPI, File, Form, HTTPException, UploadFile
@@ -32,7 +33,7 @@ async def no_stale_front(request, call_next):
         response.headers["Cache-Control"] = "no-cache"
     return response
 
-from .sar_api import router as sar_router  # noqa: E402
+from .sar_api import router as sar_router
 
 app.include_router(sar_router)
 
@@ -250,7 +251,7 @@ def scan_geojson(scan_id: str):
 
 
 @app.post("/api/detect")
-async def detect_upload(image: UploadFile = File(...), confidence: float = Form(0.20), tile: int = Form(640)):
+async def detect_upload(image: Annotated[UploadFile, File()], confidence: float = Form(0.20), tile: int = Form(640)):
     """Le mode de la démo d'origine : une image quelconque, sans géoréférence."""
     try:
         img = Image.open(io.BytesIO(await image.read())).convert("RGB")

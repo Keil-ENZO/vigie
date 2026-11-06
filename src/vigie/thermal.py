@@ -11,8 +11,8 @@ import time
 from pathlib import Path
 
 PROM = Path(os.environ.get("VIGIE_GPUTEMPS_PROM", "/var/lib/node_exporter/textfile/gputemps.prom"))
-PAUSE_AT = float(os.environ.get("VIGIE_VRAM_PAUSE", 84))
-RESUME_AT = float(os.environ.get("VIGIE_VRAM_RESUME", 60))
+PAUSE_AT = float(os.environ.get("VIGIE_VRAM_PAUSE", "84"))
+RESUME_AT = float(os.environ.get("VIGIE_VRAM_RESUME", "60"))
 
 
 def vram_celsius(path: Path = PROM) -> float | None:

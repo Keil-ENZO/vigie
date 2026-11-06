@@ -45,7 +45,7 @@ class Box:
     def center(self) -> tuple[float, float]:
         return (self.x1 + self.x2) / 2, (self.y1 + self.y2) / 2
 
-    def shifted(self, dx: float, dy: float) -> "Box":
+    def shifted(self, dx: float, dy: float) -> Box:
         return Box(self.x1 + dx, self.y1 + dy, self.x2 + dx, self.y2 + dy,
                    self.confidence, self.class_id, self.label, dict(self.extra))
 

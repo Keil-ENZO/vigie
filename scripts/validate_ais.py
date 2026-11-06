@@ -43,7 +43,7 @@ def main():
         meta = scan.run(bbox, scene=sc, params=detector.DetectParams(confidence=args.conf), name=name)
         res = ais.crosscheck(meta["id"])
         s = res["summary"]
-        meta2, det = scan.load_scan(meta["id"])
+        _, det = scan.load_scan(meta["id"])
         for f in det["features"]:
             p = f["properties"]
             if p.get("ais", {}).get("status") == "matched" and p["ais"].get("length_m"):
@@ -67,7 +67,7 @@ def main():
     lines = [f"# Validation AIS, modèle `{args.model.name}`, seuil {args.conf}", "",
              "| Zone | Passe | AIS | AIS > 50 m | Détections | Appariées | Sombres | Précision | Rappel > 50 m | Longueur, err. méd. |",
              "|---|---|---|---|---|---|---|---|---|---|"]
-    pct = lambda v: "–" if v is None else f"{v * 100:.0f} %"  # noqa: E731
+    pct = lambda v: "–" if v is None else f"{v * 100:.0f} %"
     for r in rows:
         lines.append(f"| {r['zone']} | {r['scene'][:24]} | {r['ais']} | {r['ais_50m']} | {r['detections']} | {r['matched']} | "
                      f"{r['dark']} | {pct(r['precision'])} | {pct(r['recall_50m'])} | {r['len_mae']} m |")

@@ -27,8 +27,7 @@ def fetch_model():
     with httpx.stream("GET", MODEL_URL, follow_redirects=True, timeout=120) as r:
         r.raise_for_status()
         with open(DEFAULT_MODEL, "wb") as f:
-            for chunk in r.iter_bytes():
-                f.write(chunk)
+            f.writelines(r.iter_bytes())
     console.print(f"modèle enregistré : {DEFAULT_MODEL}")
 
 
@@ -114,7 +113,7 @@ def _bbox(text: str):
     return tuple(parts)
 
 
-from .cli_sar import register as _register_sar  # noqa: E402 - commandes radar, module à part
+from .cli_sar import register as _register_sar
 
 _register_sar(app)
 

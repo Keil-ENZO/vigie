@@ -193,7 +193,7 @@ def analyse(scan_id: str, progress=lambda done, total, msg: None) -> dict:
     context = f"area {meta.get('name') or 'unnamed'}, bbox {meta['bbox']}, acquired {meta['scene']['datetime'][:10]}"
     vessels, t0 = {}, time.perf_counter()
     for i, f in enumerate(feats):
-        wait_if_hot(log=lambda m: progress(i, len(feats) + 1, m))
+        wait_if_hot(log=lambda m, i=i: progress(i, len(feats) + 1, m))
         p = f["properties"]
         progress(i, len(feats) + 1, f"analyse de {p['id']}")
         try:

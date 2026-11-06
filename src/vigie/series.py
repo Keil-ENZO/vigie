@@ -9,7 +9,8 @@ from __future__ import annotations
 
 import json
 import uuid
-from datetime import datetime, timezone
+from datetime import UTC, datetime
+from itertools import pairwise
 
 from . import ais, detector, scan, sentinel
 
@@ -61,10 +62,10 @@ def run(bbox, name: str | None = None, n: int = 6, days: int = 90, max_cloud: fl
             bbox, scene=sc, params=detector.DetectParams(confidence=confidence), name=name, log=log)
         steps.append({"scan_id": meta["id"], "datetime": sc.datetime, "cloud_cover": sc.cloud_cover,
                       "vessels": meta["counts"]["vessels"]})
-    for prev, cur in zip(steps, steps[1:]):
+    for prev, cur in pairwise(steps):
         cur["vs_previous"] = {k: v for k, v in compare(prev["scan_id"], cur["scan_id"]).items() if k != "stayed_ids"}
-    sid = datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%S-") + uuid.uuid4().hex[:4]
-    out = {"id": sid, "name": name, "bbox": list(bbox), "created": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+    sid = datetime.now(UTC).strftime("%Y%m%d-%H%M%S-") + uuid.uuid4().hex[:4]
+    out = {"id": sid, "name": name, "bbox": list(bbox), "created": datetime.now(UTC).isoformat(timespec="seconds"),
            "steps": steps}
     SERIES.mkdir(parents=True, exist_ok=True)
     (SERIES / f"{sid}.json").write_text(json.dumps(out, indent=2, ensure_ascii=False))

@@ -51,7 +51,7 @@ def _axis(xs: np.ndarray, ys: np.ndarray) -> tuple[float, float, float, float, f
 def measure(rgb: np.ndarray, box: Box, gsd: float, pad: int = 4, k: float = 2.5) -> Shape | None:
     h, w = rgb.shape[:2]
     x1, y1 = max(0, int(box.x1) - pad), max(0, int(box.y1) - pad)
-    x2, y2 = min(w, int(math.ceil(box.x2)) + pad), min(h, int(math.ceil(box.y2)) + pad)
+    x2, y2 = min(w, math.ceil(box.x2) + pad), min(h, math.ceil(box.y2) + pad)
     crop = rgb[y1:y2, x1:x2].astype(np.float32)
     if crop.shape[0] < 3 or crop.shape[1] < 3:
         return None
@@ -91,4 +91,4 @@ def measure(rgb: np.ndarray, box: Box, gsd: float, pad: int = 4, k: float = 2.5)
             course = round((math.degrees(math.atan2(dx, dy)) + 360) % 360, 0)
             wake = round((sig_len - length) * gsd, 0)
             angle = sig_angle  # l'axe du sillage est plus sûr que celui d'une coque de 3 pixels
-    return Shape(round(length * gsd, 0), round(width * gsd, 0), round(angle, 0), int(len(xs)), course, wake)
+    return Shape(round(length * gsd, 0), round(width * gsd, 0), round(angle, 0), len(xs), course, wake)

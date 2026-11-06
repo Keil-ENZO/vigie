@@ -14,7 +14,7 @@ import os
 import time
 import uuid
 from dataclasses import asdict
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 import numpy as np
@@ -82,14 +82,14 @@ def run(bbox: sentinel.BBox, scene: sentinel.Scene | None = None, params: detect
         fixed = None
         log(f"objets fixes non vérifiés : {exc}")
 
-    scan_id = datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%S-") + uuid.uuid4().hex[:4]
+    scan_id = datetime.now(UTC).strftime("%Y%m%d-%H%M%S-") + uuid.uuid4().hex[:4]
     out = scan_dir(scan_id)
     out.mkdir(parents=True)
     Image.fromarray(raster.rgb).save(out / "image.jpg", quality=88)
     _save_crops(raster.rgb, feats, out / "crops")
     (out / "detections.geojson").write_text(json.dumps({"type": "FeatureCollection", "features": feats}))
     meta = {
-        "id": scan_id, "name": name, "created": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "id": scan_id, "name": name, "created": datetime.now(UTC).isoformat(timespec="seconds"),
         "bbox": list(bbox), "scene": scene.to_dict(), "params": asdict(params), "model": result.model,
         "size_px": [w, h], "gsd_m": raster.gsd, "crs": raster.crs,
         "corners": _corners(raster.transform, raster.crs, w, h),

@@ -14,7 +14,7 @@ def ship_image(length_px: int, angle_deg: float, size: int = 64):
     for s in np.linspace(-length_px / 2, length_px / 2, length_px * 4):
         for o in (-1, 0, 1):
             x, y = c + s * dx + o * dy, c + s * dy - o * dx
-            img[int(round(y)), int(round(x))] = 220
+            img[round(y), round(x)] = 220
     return img
 
 

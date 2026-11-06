@@ -6,22 +6,22 @@ de la zone demandée dans le COG `visual`, en HTTP Range.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, asdict
+from dataclasses import asdict, dataclass
 from datetime import date, timedelta
 
 import httpx
 import numpy as np
 import rasterio
-from shapely.geometry import box, shape
 from rasterio.enums import Resampling
 from rasterio.warp import transform_bounds
 from rasterio.windows import Window, from_bounds
+from shapely.geometry import box, shape
 
 STAC = "https://earth-search.aws.element84.com/v1"
 COLLECTION = "sentinel-2-l2a"
 MAX_SIDE_PX = 6000  # 60 km de côté à 10 m : garde-fou mémoire et temps de calcul
-GDAL_ENV = dict(GDAL_DISABLE_READDIR_ON_OPEN="EMPTY_DIR", CPL_VSIL_CURL_ALLOWED_EXTENSIONS=".tif",
-                GDAL_HTTP_MULTIRANGE="YES", GDAL_HTTP_MERGE_CONSECUTIVE_RANGES="YES", VSI_CACHE="TRUE")
+GDAL_ENV = {"GDAL_DISABLE_READDIR_ON_OPEN": "EMPTY_DIR", "CPL_VSIL_CURL_ALLOWED_EXTENSIONS": ".tif",
+            "GDAL_HTTP_MULTIRANGE": "YES", "GDAL_HTTP_MERGE_CONSECUTIVE_RANGES": "YES", "VSI_CACHE": "TRUE"}
 
 BBox = tuple[float, float, float, float]  # ouest, sud, est, nord en WGS84
 

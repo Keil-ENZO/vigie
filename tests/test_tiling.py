@@ -1,3 +1,5 @@
+from itertools import pairwise
+
 from vigie.tiling import Box, make_tiles, merge, tile_starts
 
 
@@ -5,7 +7,7 @@ def test_tile_starts_covers_edges():
     assert tile_starts(500, 640, 96) == [0]
     starts = tile_starts(1500, 640, 96)
     assert starts[0] == 0 and starts[-1] == 1500 - 640
-    assert all(b - a <= 640 - 96 for a, b in zip(starts, starts[1:]))
+    assert all(b - a <= 640 - 96 for a, b in pairwise(starts))
 
 
 def test_make_tiles_cover_whole_image():

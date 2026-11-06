@@ -102,7 +102,7 @@ src/vigie/
   scan.py       orchestration and on-disk storage
   api.py, cli.py, jobs.py, thermal.py
 web/            map UI, no build step
-scripts/        AIS evaluation
+scripts/        validation against AIS, demo recording, detector training in train/
 ```
 
 ## Limits

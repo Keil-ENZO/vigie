@@ -138,7 +138,7 @@ class Collector:
                             last_sub = time.time()
                         try:
                             raw = await asyncio.wait_for(ws.recv(), timeout=1.0)
-                        except asyncio.TimeoutError:
+                        except TimeoutError:
                             continue
                         self._ingest(json.loads(raw))
             except Exception as exc:  # noqa: BLE001 - réseau, clé refusée : on réessaie plus tard

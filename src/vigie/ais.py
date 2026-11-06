@@ -15,7 +15,7 @@ import json
 import math
 import os
 import zipfile
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from pathlib import Path
 
 import httpx
@@ -70,8 +70,7 @@ def ensure_day(day: str, log=print) -> Path:
                 raise LookupError(f"pas encore d'AIS danois publié pour le {day}")
             r.raise_for_status()
             with open(tmp, "wb") as f:
-                for chunk in r.iter_bytes(1 << 20):
-                    f.write(chunk)
+                f.writelines(r.iter_bytes(1 << 20))
         tmp.rename(zpath)
     log("décompression")
     with zipfile.ZipFile(zpath) as z:
@@ -167,7 +166,7 @@ def match(features: list[dict], vessels: list[dict], gate: float = GATE_M) -> li
 
 def crosscheck(scan_id: str, log=print) -> dict:
     meta, det = scan.load_scan(scan_id)
-    t0 = datetime.fromisoformat(meta["scene"]["datetime"].replace("Z", "+00:00")).astimezone(timezone.utc)
+    t0 = datetime.fromisoformat(meta["scene"]["datetime"]).astimezone(UTC)
     day = t0.strftime("%Y-%m-%d")
     csv = ensure_day(day, log)
     log("lecture de l'AIS autour de la passe")
