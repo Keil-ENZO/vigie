@@ -11,7 +11,7 @@ uv run vigie demo
 
 ## Before opening a pull request
 
-There is no CI, so please run the checks yourself:
+Run the checks before you push. CI runs the same ones on Python 3.11 and 3.12:
 
 ```bash
 uv run ruff check .
