@@ -35,7 +35,7 @@ URL = os.environ.get("VIGIE_LLM_URL") or os.environ.get("VIGIE_OLLAMA") or (
     "http://localhost:11434" if API == "ollama" else "http://localhost:1234/v1")
 URL = URL.rstrip("/")
 KEY = os.environ.get("VIGIE_LLM_KEY")
-MODEL = os.environ.get("VIGIE_VLM", "gemma4:26b-a4b-it-q4_K_M")
+MODEL = os.environ.get("VIGIE_VLM", "gemma4:26b")
 CATEGORIES = ["cargo", "tanker", "passenger", "military", "fishing", "pleasure", "service", "unknown"]
 
 VESSEL_SCHEMA = {

@@ -147,7 +147,7 @@ Any model that accepts images works. Small models make worse reports, the number
 | `VIGIE_LLM_API` | `ollama` | `ollama` or `openai` for any OpenAI-compatible server |
 | `VIGIE_LLM_URL` | `http://localhost:11434`, or `http://localhost:1234/v1` with `openai` | server address |
 | `VIGIE_LLM_KEY` | none | API key, only if the server asks for one |
-| `VIGIE_VLM` | `gemma4:26b-a4b-it-q4_K_M` | model name, exactly as the server lists it |
+| `VIGIE_VLM` | `gemma4:26b` | model name, exactly as the server lists it |
 
 Ollama:
 
